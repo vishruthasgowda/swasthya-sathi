@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Family Health Portal - ASHA Workers</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="navbar">
+            <img src="logo.jpeg" alt="Logo" class="logo">
+            <div class="nav-right">
+                <select class="language-dropdown" id="languageSelect">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="kn">ಕನ್ನಡ</option>
+                </select>
+                <button class="login-btn" id="loginBtn">Login</button>
+            </div>
+        </div>
+
+        <div class="hero">
+            <div class="hero-overlay">
+                <img src="heroimg.jpeg" alt="Family Health" class="hero-image">
+                <div class="hero-text">
+                    <h1>Your Family's Health, Now in Your Hands</h1>
+                    <p>Empowering ASHA Workers with digital tools for better healthcare delivery</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="container">
+                <h2>What We Do</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Digital Family Records</h3>
+                        <p>Maintain complete health records of families in your area with easy access and updates.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Real-time Monitoring</h3>
+                        <p>Track vaccinations, maternal health, child growth, and chronic diseases instantly.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Smart Alerts</h3>
+                        <p>Get automatic notifications for due vaccinations, health camps, and follow-ups.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Easy Reporting</h3>
+                        <p>Generate reports and submit data to health authorities with one click.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loginModal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>ASHA Worker Login</h2>
+                <form class="login-form">
+                    <div class="input-group">
+                        <label for="workerId">Worker ID</label>
+                        <input type="text" id="workerId" placeholder="Enter your Worker ID" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="login-submit" id="ashaLogin">Login</button>
+                </form>
+                <p class="login-help">Contact your supervisor if you forgot your credentials</p>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+    </html>

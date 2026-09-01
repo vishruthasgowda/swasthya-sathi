@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ashastyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>ASHA Worker Dashboard</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            
+            <button class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <h1>ASHA Connect</h1>
+            <div class="header-right">
+                <span class="user-name" id="userName">Loading...</span>
+                <button class="logout-btn" id="logout">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-logo-container">
+            <h2 style="color:var(--primary-color); text-align:center; padding: 20px 0;">Swasthya Sathi</h2>
+        </div>
+        <nav class="nav-menu">
+            <button class="nav-btn active" data-section="dashboard"><span>📊</span> Dashboard</button>
+            <button class="nav-btn" data-section="patients"><span>👥</span> Patient Directory</button>
+            <button class="nav-btn" data-section="healthform"><span>⚕️</span> CBAC Form</button>
+            <button class="nav-btn" data-section="payments"><span>💰</span> Payments</button>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <section class="section active" data-section="dashboard">
+            <div class="container">
+                <div class="welcome-section">
+                    <h1>Welcome back, <span id="dashName"></span>!</h1>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Here is your overview for today.</p>
+                </div>
+                
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <div class="icon" style="background: #e3f2fd; color: #1976d2;">📋</div>
+                        <div class="details">
+                            <h3 id="dashTasks">4</h3>
+                            <p>Tasks Today</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="icon" style="background: #ffebee; color: #d32f2f;">⚠️</div>
+                        <div class="details">
+                            <h3 id="dashHighRisk">2</h3>
+                            <p>High Risk Patients</p>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="icon" style="background: #e8f5e9; color: #388e3c;">₹</div>
+                        <div class="details">
+                            <h3 id="dashEarnings">₹0</h3>
+                            <p>Credited Earnings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-lists" style="margin-top: 30px;">
+                    <h2>Today's Priority Tasks</h2>
+                    <ul class="task-list" id="taskList" style="margin-top: 15px; background: var(--card-bg); padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); list-style: none;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">✅ Follow-up: Radha Sharma (ANC)</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">✅ Administer DOTS: Suresh Kumar</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">⏰ Submit 2 CBAC forms for Ward 4</li>
+                        <li style="padding: 10px 0;">⏰ Village Health Sanitation meeting at 4 PM</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" data-section="patients">
+            <div class="container">
+                <h1>Patient Directory</h1>
+                <input type="text" id="patientSearch" placeholder="Search by name, village, or status..." class="search-input">
+                <div id="patientList" class="patient-grid"></div>
+            </div>
+        </section>
+
+        <section class="section" data-section="healthform">
+            <div class="container">
+                <div class="form-container" style="max-width: 800px;">
+                    <h1>CBAC Health Assessment</h1>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Community Based Assessment Checklist for NCDs</p>
+                    
+                    <form id="healthForm" class="health-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Patient Name</label>
+                                <input type="text" id="patientName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Village / Sector</label>
+                                <input type="text" id="patientVillage" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Age (Years)</label>
+                                <input type="number" id="age" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select id="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
+                        
+                        <h3>Vitals</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Blood Pressure (e.g. 120/80)</label>
+                                <input type="text" id="bp" placeholder="Systolic/Diastolic">
+                            </div>
+                            <div class="form-group">
+                                <label>Random Blood Sugar (mg/dL)</label>
+                                <input type="number" id="sugar">
+                            </div>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border-color);">
+
+                        <h3>Risk Factors (Scoring)</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Tobacco Use</label>
+                                <select id="tobacco" required>
+                                    <option value="0">Never (0 pts)</option>
+                                    <option value="1">Past / Sometimes (1 pt)</option>
+                                    <option value="2">Daily (2 pts)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Alcohol Consumption</label>
+                                <select id="alcohol" required>
+                                    <option value="0">No (0 pts)</option>
+                                    <option value="1">Yes (1 pt)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Waist Circumference (cm)</label>
+                                <input type="number" id="waist" placeholder="Enter in cm" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Physical Activity (Per Week)</label>
+                                <select id="activity" required>
+                                    <option value="0">150 mins or more (0 pts)</option>
+                                    <option value="1">Less than 150 mins (1 pt)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Family History (BP/Diabetes/Heart)</label>
+                                <select id="history" required>
+                                    <option value="0">No (0 pts)</option>
+                                    <option value="2">Yes (2 pts)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 30px;">
+                            <button type="submit" class="submit-btn">Calculate Score & Save Patient</button>
+                        </div>
+                    </form>
+
+                    <div id="scoreResult" style="display: none; margin-top: 20px; padding: 20px; border-radius: 8px; text-align: center;">
+                        <h2 id="finalScoreText"></h2>
+                        <p id="riskCategoryText" style="font-weight: 600; font-size: 1.2rem;"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" data-section="payments">
+            <div class="container">
+                <h1>Payments & Incentives</h1>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Claim your pending incentives via OTP verification.</p>
+                <div id="paymentHistory"></div>
+            </div>
+        </section>
+    </main>
+    <script src="asha.js"></script>
+</body>
+</html>
